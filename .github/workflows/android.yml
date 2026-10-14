@@ -23,6 +23,25 @@ jobs:
       - name: Unpack project
         run: unzip -o SMART_BET_PRO_starter_project.zip -d .
 
+      - name: Fix Java target
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("app/build.gradle.kts")
+          s = p.read_text()
+          if "compileOptions {" not in s:
+              s = s.replace(
+                  "android {",
+                  """android {
+              compileOptions {
+                  sourceCompatibility = JavaVersion.VERSION_17
+                  targetCompatibility = JavaVersion.VERSION_17
+              }""",
+                  1
+              )
+          p.write_text(s)
+          PY
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
