@@ -1,1 +1,108 @@
-
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>SMART BET PRO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#07111f;color:#fff;font-family:Arial,sans-serif}
+header{padding:24px 18px;background:#102c3c}
+.logo{font-size:26px;font-weight:bold;color:#43f5a3}
+.logo span{color:white}
+main{padding:16px;max-width:600px;margin:auto}
+.card{background:#102132;border:1px solid #294459;border-radius:16px;padding:18px;margin:16px 0}
+h2{font-size:19px}
+p{line-height:1.5;color:#b7c8d8}
+button{border:0;border-radius:10px;padding:12px;background:#43f5a3;color:#07111f;font-weight:bold}
+input{display:block;width:100%;padding:12px;margin:10px 0;background:#07111f;color:white;border:1px solid #294459;border-radius:9px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#0a1928;padding:14px;border-radius:12px}
+.stat strong{display:block;color:#43f5a3;font-size:20px;margin-bottom:6px}
+small{color:#b7c8d8}
+footer{text-align:center;padding:24px;color:#8499ad}
+</style>
+</head>
+<body>
+<header>
+<button onclick="lang()" id="language" style="float:right">EN</button>
+<div class="logo">SMART BET <span>PRO</span></div>
+<p id="subtitle">Футбольна аналітика та статистика</p>
+</header>
+<main>
+<div class="card">
+<h2 id="welcome">⚽ Ласкаво просимо!</h2>
+<p id="intro">Аналізуй футбольні матчі та оцінюй можливі результати.</p>
+</div>
+<h2 id="tools">📊 Інструменти аналітики</h2>
+<div class="grid">
+<div class="stat"><strong>1X2</strong><small id="s1">Перемога / Нічия</small></div>
+<div class="stat"><strong>O/U</strong><small id="s2">Тотал голів</small></div>
+<div class="stat"><strong>CORNERS</strong><small id="s3">Кутові</small></div>
+<div class="stat"><strong>STATS</strong><small id="s4">Статистика команд</small></div>
+</div>
+<div class="card">
+<h2 id="calcTitle">🧮 Калькулятор тоталу</h2>
+<p id="calcInfo">Введи очікувану кількість голів обох команд.</p>
+<label id="homeLabel">Голи господарів</label>
+<input id="home" type="number" min="0" max="20" step="0.1" value="1.4">
+<label id="awayLabel">Голи гостей</label>
+<input id="away" type="number" min="0" max="20" step="0.1" value="1.1">
+<button onclick="calculate()" id="calcButton">РОЗРАХУВАТИ</button>
+<div class="stat" style="margin-top:15px">
+<strong id="total">2.5</strong>
+<small id="result">Очікуваний сумарний показник голів</small>
+</div>
+</div>
+<div class="card">
+<h2 id="demoTitle">⚽ Демонстраційний матч</h2>
+<p id="demo">Команда А — Команда Б</p>
+<p id="api">Реальні результати потребують підключення джерела футбольних даних.</p>
+</div>
+<div class="card">
+<h2 id="safeTitle">🛡️ Відповідальна гра</h2>
+<p id="safe">Жоден прогноз не гарантує виграшу. Не ризикуй грошима, які не можеш дозволити собі втратити.</p>
+</div>
+</main>
+<footer>SMART BET PRO © 2026</footer>
+<script>
+let en=false;
+function calculate(){
+let h=document.getElementById('home').value;
+let a=document.getElementById('away').value;
+if(h===''||a===''||!Number.isFinite(Number(h))||!Number.isFinite(Number(a))||Number(h)<0||Number(a)<0||Number(h)>20||Number(a)>20){
+alert(en?'Enter numbers from 0 to 20':'Введи числа від 0 до 20');return;
+}
+document.getElementById('total').textContent=(Number(h)+Number(a)).toFixed(1);
+}
+function lang(){
+en=!en;
+document.getElementById('language').textContent=en?'UA':'EN';
+let values={
+subtitle:['Football analytics and statistics','Футбольна аналітика та статистика'],
+welcome:['⚽ Welcome!','⚽ Ласкаво просимо!'],
+intro:['Analyze football matches and estimate possible outcomes.','Аналізуй футбольні матчі та оцінюй можливі результати.'],
+tools:['📊 Analytics tools','📊 Інструменти аналітики'],
+s1:['Win / Draw','Перемога / Нічия'],
+s2:['Goal totals','Тотал голів'],
+s3:['Corners','Кутові'],
+s4:['Team statistics','Статистика команд'],
+calcTitle:['🧮 Goal total calculator','🧮 Калькулятор тоталу'],
+calcInfo:['Enter expected goals for both teams.','Введи очікувану кількість голів обох команд.'],
+homeLabel:['Home team goals','Голи господарів'],
+awayLabel:['Away team goals','Голи гостей'],
+calcButton:['CALCULATE','РОЗРАХУВАТИ'],
+result:['Expected total goals','Очікуваний сумарний показник голів'],
+demoTitle:['⚽ Demo match','⚽ Демонстраційний матч'],
+demo:['Team A — Team B','Команда А — Команда Б'],
+api:['Live results require a football data provider.','Реальні результати потребують підключення джерела футбольних даних.'],
+safeTitle:['🛡️ Responsible betting','🛡️ Відповідальна гра'],
+safe:['No prediction guarantees a win. Never risk money you cannot afford to lose.','Жоден прогноз не гарантує виграшу. Не ризикуй грошима, які не можеш дозволити собі втратити.']
+};
+for(let id in values)document.getElementById(id).textContent=values[id][en?0:1];
+document.documentElement.lang=en?'en':'uk';
+}
+</script>
+</body>
+</html>
