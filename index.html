@@ -2,107 +2,703 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#07111f">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07110d">
+<meta name="description" content="SMART BET PRO — футбольні матчі, результати та статистика.">
 <title>SMART BET PRO</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#07111f;color:#fff;font-family:Arial,sans-serif}
-header{padding:24px 18px;background:#102c3c}
-.logo{font-size:26px;font-weight:bold;color:#43f5a3}
-.logo span{color:white}
-main{padding:16px;max-width:600px;margin:auto}
-.card{background:#102132;border:1px solid #294459;border-radius:16px;padding:18px;margin:16px 0}
-h2{font-size:19px}
-p{line-height:1.5;color:#b7c8d8}
-button{border:0;border-radius:10px;padding:12px;background:#43f5a3;color:#07111f;font-weight:bold}
-input{display:block;width:100%;padding:12px;margin:10px 0;background:#07111f;color:white;border:1px solid #294459;border-radius:9px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{background:#0a1928;padding:14px;border-radius:12px}
-.stat strong{display:block;color:#43f5a3;font-size:20px;margin-bottom:6px}
-small{color:#b7c8d8}
-footer{text-align:center;padding:24px;color:#8499ad}
+:root {
+  --bg: #07110d;
+  --panel: #101d17;
+  --panel2: #16251d;
+  --green: #31e981;
+  --text: #f1f7f3;
+  --muted: #9aaea1;
+  --border: #26382d;
+  --red: #ff626e;
+  --yellow: #ffce67;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+header {
+  padding: 22px 16px;
+  background: linear-gradient(135deg, #102d20, #07110d);
+  border-bottom: 1px solid var(--border);
+}
+
+.wrap {
+  max-width: 850px;
+  margin: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: var(--green);
+  color: #06150c;
+  font-size: 25px;
+}
+
+h1 {
+  font-size: 23px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 16px;
+}
+
+.section {
+  margin-bottom: 22px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
+.hero {
+  padding: 20px;
+  background: linear-gradient(135deg, #153d29, #102017);
+  border: 1px solid #28543b;
+  border-radius: 18px;
+}
+
+.hero h2 {
+  margin: 0 0 8px;
+  font-size: 23px;
+}
+
+.hero p {
+  color: #c0d5c7;
+  margin: 0;
+  font-size: 14px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.stat {
+  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 22px;
+  color: var(--green);
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+button, select, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.filter {
+  padding: 9px 13px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.filter.active {
+  color: #06150c;
+  background: var(--green);
+  border-color: var(--green);
+  font-weight: bold;
+}
+
+.primary {
+  padding: 11px 15px;
+  background: var(--green);
+  color: #06150c;
+  border: 0;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.secondary {
+  padding: 10px 14px;
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+#updated {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+.notice {
+  padding: 12px;
+  border-radius: 12px;
+  background: #18241c;
+  color: var(--muted);
+  font-size: 13px;
+  border: 1px solid var(--border);
+}
+
+.match {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.competition {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.competition img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.teams {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 68px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+
+.team {
+  text-align: center;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.team img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 7px;
+}
+
+.score {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.status.live { color: var(--red); }
+.status.finished { color: var(--green); }
+.status.upcoming { color: var(--yellow); }
+
+.match-time {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.match-link {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: var(--green);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.calculator {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 16px;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.result {
+  margin-top: 14px;
+  padding: 16px;
+  background: #142b1e;
+  border: 1px solid #28543b;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.result strong {
+  color: var(--green);
+  display: block;
+  font-size: 30px;
+}
+
+.result span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+footer {
+  padding: 22px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.hidden { display: none !important; }
+
+@media (min-width: 600px) {
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  h1 { font-size: 27px; }
+  main { padding: 24px; }
+}
 </style>
 </head>
+
 <body>
 <header>
-<button onclick="lang()" id="language" style="float:right">EN</button>
-<div class="logo">SMART BET <span>PRO</span></div>
-<p id="subtitle">Футбольна аналітика та статистика</p>
+  <div class="wrap brand">
+    <div class="logo">⚽</div>
+    <div>
+      <h1>SMART BET PRO</h1>
+      <div class="subtitle">Футбольна аналітика та статистика</div>
+    </div>
+  </div>
 </header>
+
 <main>
-<div class="card">
-<h2 id="welcome">⚽ Ласкаво просимо!</h2>
-<p id="intro">Аналізуй футбольні матчі та оцінюй можливі результати.</p>
-</div>
-<h2 id="tools">📊 Інструменти аналітики</h2>
-<div class="grid">
-<div class="stat"><strong>1X2</strong><small id="s1">Перемога / Нічия</small></div>
-<div class="stat"><strong>O/U</strong><small id="s2">Тотал голів</small></div>
-<div class="stat"><strong>CORNERS</strong><small id="s3">Кутові</small></div>
-<div class="stat"><strong>STATS</strong><small id="s4">Статистика команд</small></div>
-</div>
-<div class="card">
-<h2 id="calcTitle">🧮 Калькулятор тоталу</h2>
-<p id="calcInfo">Введи очікувану кількість голів обох команд.</p>
-<label id="homeLabel">Голи господарів</label>
-<input id="home" type="number" min="0" max="20" step="0.1" value="1.4">
-<label id="awayLabel">Голи гостей</label>
-<input id="away" type="number" min="0" max="20" step="0.1" value="1.1">
-<button onclick="calculate()" id="calcButton">РОЗРАХУВАТИ</button>
-<div class="stat" style="margin-top:15px">
-<strong id="total">2.5</strong>
-<small id="result">Очікуваний сумарний показник голів</small>
-</div>
-</div>
-<div class="card">
-<h2 id="demoTitle">⚽ Демонстраційний матч</h2>
-<p id="demo">Команда А — Команда Б</p>
-<p id="api">Реальні результати потребують підключення джерела футбольних даних.</p>
-</div>
-<div class="card">
-<h2 id="safeTitle">🛡️ Відповідальна гра</h2>
-<p id="safe">Жоден прогноз не гарантує виграшу. Не ризикуй грошима, які не можеш дозволити собі втратити.</p>
-</div>
+  <section class="section hero">
+    <h2>Твій футбольний центр</h2>
+    <p>Матчі, результати та інструменти аналізу в одному місці.</p>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <strong id="totalMatches">—</strong>
+        <span>Матчів завантажено</span>
+      </div>
+      <div class="stat">
+        <strong id="finishedMatches">—</strong>
+        <span>Завершених</span>
+      </div>
+      <div class="stat">
+        <strong id="liveMatches">—</strong>
+        <span>Наживо</span>
+      </div>
+      <div class="stat">
+        <strong id="upcomingMatches">—</strong>
+        <span>Майбутніх</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">⚽ Футбольні матчі</h2>
+
+    <div class="toolbar">
+      <button class="filter active" data-filter="all">Усі</button>
+      <button class="filter" data-filter="live">🔴 Наживо</button>
+      <button class="filter" data-filter="upcoming">Майбутні</button>
+      <button class="filter" data-filter="finished">Завершені</button>
+    </div>
+
+    <div class="toolbar">
+      <button class="primary" id="refreshButton">↻ Оновити матчі</button>
+    </div>
+
+    <div id="updated">Підключення до джерела футбольних даних…</div>
+    <div id="message" class="notice">Завантажуємо матчі. Зачекай, будь ласка.</div>
+    <div id="matches"></div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🧮 Калькулятор тоталу</h2>
+    <div class="calculator">
+      <p class="subtitle">Введи очікувану кількість голів обох команд.</p>
+
+      <div class="inputs">
+        <div>
+          <label for="homeGoals">Голи господарів</label>
+          <input id="homeGoals" type="number" min="0" max="30" step="0.5" value="1.5">
+        </div>
+        <div>
+          <label for="awayGoals">Голи гостей</label>
+          <input id="awayGoals" type="number" min="0" max="30" step="0.5" value="1">
+        </div>
+      </div>
+
+      <button class="primary" id="calculateButton" style="width:100%;margin-top:14px">
+        Розрахувати тотал
+      </button>
+
+      <div class="result">
+        <strong id="totalResult">2.5</strong>
+        <span>Сума введених очікуваних голів</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">📊 Інструменти аналітики</h2>
+    <div class="stats-grid">
+      <div class="stat"><strong>1X2</strong><span>Перемога / нічия</span></div>
+      <div class="stat"><strong>O/U</strong><span>Тотал голів</span></div>
+      <div class="stat"><strong>⚑</strong><span>Кутові</span></div>
+      <div class="stat"><strong>STATS</strong><span>Статистика команд</span></div>
+    </div>
+    <p class="notice" style="margin-top:12px">
+      Розширені прогнози та статистика потребують відповідних даних від постачальника.
+      Показники не гарантують результату матчу.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🛡️ Відповідальна гра</h2>
+    <div class="notice">
+      Жоден прогноз не гарантує виграшу. Не ризикуй грошима, які не можеш дозволити собі втратити.
+    </div>
+  </section>
 </main>
-<footer>SMART BET PRO © 2026</footer>
+
+<footer>
+  SMART BET PRO · Футбольна аналітика<br>
+  Результати залежать від доступності та точності джерела даних.
+</footer>
+
 <script>
-let en=false;
-function calculate(){
-let h=document.getElementById('home').value;
-let a=document.getElementById('away').value;
-if(h===''||a===''||!Number.isFinite(Number(h))||!Number.isFinite(Number(a))||Number(h)<0||Number(a)<0||Number(h)>20||Number(a)>20){
-alert(en?'Enter numbers from 0 to 20':'Введи числа від 0 до 20');return;
+const API_URL = "https://sportscore.com/api/v1/fixtures/?sport=football&limit=10";
+
+let allMatches = [];
+let currentFilter = "all";
+
+const $ = id => document.getElementById(id);
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
 }
-document.getElementById('total').textContent=(Number(h)+Number(a)).toFixed(1);
+
+function safeImage(url) {
+  if (!url) return "";
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "https:") return "";
+    return escapeHTML(parsed.href);
+  } catch {
+    return "";
+  }
 }
-function lang(){
-en=!en;
-document.getElementById('language').textContent=en?'UA':'EN';
-let values={
-subtitle:['Football analytics and statistics','Футбольна аналітика та статистика'],
-welcome:['⚽ Welcome!','⚽ Ласкаво просимо!'],
-intro:['Analyze football matches and estimate possible outcomes.','Аналізуй футбольні матчі та оцінюй можливі результати.'],
-tools:['📊 Analytics tools','📊 Інструменти аналітики'],
-s1:['Win / Draw','Перемога / Нічия'],
-s2:['Goal totals','Тотал голів'],
-s3:['Corners','Кутові'],
-s4:['Team statistics','Статистика команд'],
-calcTitle:['🧮 Goal total calculator','🧮 Калькулятор тоталу'],
-calcInfo:['Enter expected goals for both teams.','Введи очікувану кількість голів обох команд.'],
-homeLabel:['Home team goals','Голи господарів'],
-awayLabel:['Away team goals','Голи гостей'],
-calcButton:['CALCULATE','РОЗРАХУВАТИ'],
-result:['Expected total goals','Очікуваний сумарний показник голів'],
-demoTitle:['⚽ Demo match','⚽ Демонстраційний матч'],
-demo:['Team A — Team B','Команда А — Команда Б'],
-api:['Live results require a football data provider.','Реальні результати потребують підключення джерела футбольних даних.'],
-safeTitle:['🛡️ Responsible betting','🛡️ Відповідальна гра'],
-safe:['No prediction guarantees a win. Never risk money you cannot afford to lose.','Жоден прогноз не гарантує виграшу. Не ризикуй грошима, які не можеш дозволити собі втратити.']
-};
-for(let id in values)document.getElementById(id).textContent=values[id][en?0:1];
-document.documentElement.lang=en?'en':'uk';
+
+function getStatus(match) {
+  const status = String(match.status || "").toLowerCase();
+  const label = String(match.status_text || "").toLowerCase();
+
+  if (
+    status.includes("live") ||
+    status.includes("inplay") ||
+    status.includes("in_play") ||
+    status.includes("halftime") ||
+    status.includes("half_time") ||
+    label.includes("live")
+  ) return "live";
+
+  if (
+    status.includes("finish") ||
+    status.includes("ended") ||
+    status === "ft" ||
+    label.includes("finished")
+  ) return "finished";
+
+  if (
+    status.includes("cancel") ||
+    status.includes("postpon") ||
+    status.includes("delay") ||
+    status.includes("abandon") ||
+    label.includes("cancel") ||
+    label.includes("delay")
+  ) return "other";
+
+  return "upcoming";
 }
+
+function statusLabel(match) {
+  const state = getStatus(match);
+
+  if (state === "live") return "🔴 Наживо";
+  if (state === "finished") return "Завершено";
+  if (state === "other") return match.status_text || "Статус уточнюється";
+  return "Ще не розпочався";
+}
+
+function formatTime(value) {
+  if (!value) return "Час не вказано";
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Час не вказано";
+
+  return date.toLocaleString("uk-UA", {
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Europe/Kyiv"
+  });
+}
+
+function renderMatch(match) {
+  const home = escapeHTML(match.home || "Господарі");
+  const away = escapeHTML(match.away || "Гості");
+  const competition = escapeHTML(match.competition || "Футбольний матч");
+
+  const homeLogo = safeImage(match.home_logo);
+  const awayLogo = safeImage(match.away_logo);
+  const competitionLogo = safeImage(match.competition_logo);
+
+  const state = getStatus(match);
+  const scoresAvailable =
+    match.home_score !== null &&
+    match.home_score !== undefined &&
+    match.away_score !== null &&
+    match.away_score !== undefined;
+
+  const score = scoresAvailable
+    ? `${escapeHTML(match.home_score)} : ${escapeHTML(match.away_score)}`
+    : "— : —";
+
+  const rawPath = String(match.url || "");
+  const validPath = /^\/football\/match\/[a-zA-Z0-9/_-]+\/?$/.test(rawPath);
+  const matchLink = validPath
+    ? `<a class="match-link" href="https://www.thesports.com${rawPath}" target="_blank" rel="noopener noreferrer">Деталі матчу ↗</a>`
+    : "";
+
+  return `
+    <article class="match" data-status="${state}">
+      <div class="competition">
+        ${competitionLogo ? `<img src="${competitionLogo}" alt="" loading="lazy">` : ""}
+        <span>${competition}</span>
+      </div>
+
+      <div class="teams">
+        <div class="team">
+          ${homeLogo ? `<img src="${homeLogo}" alt="" loading="lazy">` : ""}
+          <div>${home}</div>
+        </div>
+
+        <div class="score">
+          ${score}
+          <div class="status ${state}">${escapeHTML(statusLabel(match))}</div>
+        </div>
+
+        <div class="team">
+          ${awayLogo ? `<img src="${awayLogo}" alt="" loading="lazy">` : ""}
+          <div>${away}</div>
+        </div>
+      </div>
+
+      <div class="match-time">${escapeHTML(formatTime(match.time))}</div>
+      ${matchLink}
+    </article>
+  `;
+}
+
+function updateCounters(matches) {
+  $("totalMatches").textContent = matches.length;
+  $("finishedMatches").textContent =
+    matches.filter(m => getStatus(m) === "finished").length;
+  $("liveMatches").textContent =
+    matches.filter(m => getStatus(m) === "live").length;
+  $("upcomingMatches").textContent =
+    matches.filter(m => getStatus(m) === "upcoming").length;
+}
+
+function showMatches() {
+  const filtered = allMatches.filter(match => {
+    if (currentFilter === "all") return true;
+    return getStatus(match) === currentFilter;
+  });
+
+  $("matches").innerHTML = filtered.map(renderMatch).join("");
+
+  if (filtered.length === 0 && allMatches.length > 0) {
+    $("matches").innerHTML =
+      '<div class="notice">У цій категорії матчів не знайдено.</div>';
+  }
+}
+
+async function loadMatches() {
+  const button = $("refreshButton");
+  button.disabled = true;
+  button.textContent = "Завантаження…";
+  $("message").classList.remove("hidden");
+  $("message").textContent = "Отримуємо дані про матчі…";
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "GET",
+      headers: { "Accept": "application/json" },
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      throw new Error("Сервер повернув HTTP " + response.status);
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data.matches)) {
+      throw new Error("Джерело повернуло дані в іншому форматі.");
+    }
+
+    allMatches = data.matches;
+    updateCounters(allMatches);
+    showMatches();
+
+    $("message").classList.add("hidden");
+    $("updated").textContent =
+      "Оновлено: " + new Date().toLocaleTimeString("uk-UA");
+
+  } catch (error) {
+    console.error("Помилка завантаження матчів:", error);
+
+    $("message").classList.remove("hidden");
+    $("message").textContent =
+      "Не вдалося завантажити матчі. Можливо, джерело тимчасово недоступне або блокує запити з браузера. Натисни «Оновити матчі» пізніше.";
+
+    $("updated").textContent = "Дані не оновлено.";
+
+    if (allMatches.length > 0) {
+      showMatches();
+    } else {
+      $("matches").innerHTML = "";
+      $("totalMatches").textContent = "—";
+      $("finishedMatches").textContent = "—";
+      $("liveMatches").textContent = "—";
+      $("upcomingMatches").textContent = "—";
+    }
+  } finally {
+    button.disabled = false;
+    button.textContent = "↻ Оновити матчі";
+  }
+}
+
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(item =>
+      item.classList.remove("active")
+    );
+
+    button.classList.add("active");
+    currentFilter = button.dataset.filter;
+    showMatches();
+  });
+});
+
+$("refreshButton").addEventListener("click", loadMatches);
+
+$("calculateButton").addEventListener("click", () => {
+  const home = Number($("homeGoals").value);
+  const away = Number($("awayGoals").value);
+
+  if (
+    $("homeGoals").value.trim() === "" ||
+    $("awayGoals").value.trim() === "" ||
+    !Number.isFinite(home) ||
+    !Number.isFinite(away) ||
+    home < 0 || away < 0 ||
+    home > 30 || away > 30
+  ) {
+    alert("Введи числа від 0 до 30 для обох команд.");
+    return;
+  }
+
+  $("totalResult").textContent =
+    (Math.round((home + away) * 100) / 100).toLocaleString("uk-UA");
+});
+
+loadMatches();
 </script>
 </body>
 </html>
